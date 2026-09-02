@@ -29,69 +29,69 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden">
-      {/* Background Ambient Layers */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 pb-12 px-4 overflow-hidden">
+      {/* Background Image Layer */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 opacity-20"
+        className="absolute inset-0 bg-cover bg-top bg-no-repeat transition-all duration-700 opacity-25"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000')`
+          backgroundImage: `url('${weddingData.couple.heroBg}')`
         }}
       />
       
-      {/* Soft Romantic Gradients */}
+      {/* Soft Gradients */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#FAF7F2]/80 via-[#FAF7F2]/90 to-[#FAF7F2]" />
       
-      {/* Decorative Golden Ambient Rings */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#E2C799]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#D4AF37]/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient Rings */}
+      <div className="absolute top-1/4 -left-20 w-80 sm:w-96 h-80 sm:h-96 bg-[#E2C799]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-80 sm:w-96 h-80 sm:h-96 bg-[#D4AF37]/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Pre-title Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E2C799]/30 border border-[#D4AF37]/30 text-[#8B6508] text-xs sm:text-sm uppercase tracking-widest font-semibold mb-6 shadow-xs animate-fadeIn">
-          <Heart className="w-3.5 h-3.5 fill-[#D4AF37] text-[#D4AF37]" />
-          <span>Com a benção de Deus</span>
-          <Heart className="w-3.5 h-3.5 fill-[#D4AF37] text-[#D4AF37]" />
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E2C799]/30 border border-[#D4AF37]/30 text-[#8B6508] text-[11px] sm:text-xs uppercase tracking-widest font-semibold mb-6 shadow-xs">
+          <Heart className="w-3 h-3 fill-[#D4AF37] text-[#D4AF37]" />
+          <span>Com a bênção de Deus</span>
+          <Heart className="w-3 h-3 fill-[#D4AF37] text-[#D4AF37]" />
         </div>
 
-        {/* Couple Names */}
-        <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal text-[#2C2623] tracking-tight mb-4 leading-none">
-          {weddingData.couple.groom.name} <span className="font-script text-6xl sm:text-8xl md:text-9xl text-[#B8860B] font-normal px-2">&</span> {weddingData.couple.bride.name}
+        {/* Names */}
+        <h1 className="font-serif text-4xl sm:text-7xl md:text-8xl font-normal text-[#2C2623] tracking-tight mb-2 leading-tight">
+          Alberto <span className="font-script text-5xl sm:text-8xl md:text-9xl text-[#B8860B] px-1">&</span> Lieza
         </h1>
 
-        {/* Tagline / Location */}
-        <p className="text-sm sm:text-base md:text-lg text-[#5A4D4A] uppercase tracking-widest font-medium mb-8">
+        {/* Tagline */}
+        <p className="text-xs sm:text-base text-[#5A4D4A] uppercase tracking-widest font-medium mb-6">
           {weddingData.couple.tagline}
         </p>
 
-        {/* Date & Location Pills */}
-        <div className="flex flex-wrap justify-center items-center gap-4 text-sm sm:text-base text-[#4A3E3D] mb-12">
-          <div className="flex items-center gap-2 glass-card px-5 py-2.5 rounded-full shadow-xs">
+        {/* Date & Location */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 text-xs sm:text-sm text-[#4A3E3D] mb-8">
+          <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full shadow-xs">
             <Calendar className="w-4 h-4 text-[#B8860B]" />
             <span className="font-medium">{weddingData.couple.dateText}</span>
           </div>
-          <div className="flex items-center gap-2 glass-card px-5 py-2.5 rounded-full shadow-xs">
+          <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-full shadow-xs">
             <MapPin className="w-4 h-4 text-[#B8860B]" />
             <span className="font-medium">Maputo, Moçambique</span>
           </div>
         </div>
 
-        {/* Countdown Timer Grid */}
-        <div className="mb-12">
-          <h3 className="font-serif text-lg sm:text-xl text-[#5A4D4A] italic mb-6">
+        {/* Countdown Grid - Mobile Optimized */}
+        <div className="mb-8 sm:mb-12 max-w-md mx-auto">
+          <h3 className="font-serif text-sm sm:text-lg text-[#5A4D4A] italic mb-4">
             Faltam apenas para o nosso Grande Dia:
           </h3>
-          <div className="grid grid-cols-4 gap-3 sm:gap-6 max-w-lg mx-auto">
+          <div className="grid grid-cols-4 gap-2 sm:gap-4">
             {[
               { label: 'Dias', value: timeLeft.days },
               { label: 'Horas', value: timeLeft.hours },
               { label: 'Minutos', value: timeLeft.minutes },
               { label: 'Segundos', value: timeLeft.seconds }
             ].map((unit, idx) => (
-              <div key={idx} className="glass-card rounded-2xl p-3 sm:p-5 shadow-xs flex flex-col items-center border border-[#E2C799]/40 hover:border-[#D4AF37] transition-all">
-                <span className="font-serif text-3xl sm:text-5xl font-bold text-[#B8860B]">
+              <div key={idx} className="glass-card rounded-2xl p-2.5 sm:p-4 shadow-xs flex flex-col items-center border border-[#E2C799]/40">
+                <span className="font-serif text-2xl sm:text-4xl font-bold text-[#B8860B]">
                   {String(unit.value).padStart(2, '0')}
                 </span>
-                <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#6B5A56] mt-1 font-medium">
+                <span className="text-[9px] sm:text-xs uppercase tracking-wider text-[#6B5A56] mt-0.5 font-medium">
                   {unit.label}
                 </span>
               </div>
@@ -99,26 +99,26 @@ export function Hero() {
           </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* CTA Buttons - Mobile Friendly */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
             href="#rsvp"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-medium text-base shadow-md hover:shadow-lg hover:from-[#B8860B] hover:to-[#966F0D] transition-all transform hover:-translate-y-0.5"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-medium text-sm shadow-md hover:shadow-lg transition-all"
           >
             Confirmar Presença
           </a>
           <a
             href="#schedule"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full glass-card hover:bg-white text-[#2C2623] font-medium text-base border border-[#D4AF37]/50 shadow-xs hover:shadow-md transition-all"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full glass-card text-[#2C2623] font-medium text-sm border border-[#D4AF37]/50 shadow-xs transition-all"
           >
-            Ver Localização & Programa
+            Ver Programa & Convite
           </a>
         </div>
 
         {/* Scroll indicator */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-10 sm:mt-12 flex justify-center">
           <a href="#story" className="text-[#B8860B] opacity-70 hover:opacity-100 transition-opacity animate-bounce">
-            <ChevronDown className="w-8 h-8" />
+            <ChevronDown className="w-7 h-7" />
           </a>
         </div>
       </div>

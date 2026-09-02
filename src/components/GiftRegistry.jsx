@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Gift, Utensils, Coffee, Flame, Heart, Copy, Check, Send, CreditCard, Smartphone } from 'lucide-react';
+import { Gift, Utensils, Coffee, Flame, Heart, Copy, Check, Send, CreditCard } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
 export function GiftRegistry() {
@@ -23,10 +23,10 @@ export function GiftRegistry() {
   };
 
   return (
-    <section id="gifts" className="py-20 px-4 bg-[#FAF7F2] relative overflow-hidden">
+    <section id="gifts" className="py-16 sm:py-20 px-4 bg-[#FAF7F2] relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <span className="font-script text-4xl sm:text-5xl text-[#B8860B] block mb-2">
             Com Carinho & Gratidão
           </span>
@@ -39,40 +39,48 @@ export function GiftRegistry() {
           </p>
         </div>
 
-        {/* Payment / Direct Contribution Box */}
-        <div className="glass-card rounded-3xl p-6 sm:p-8 mb-16 border border-[#E2C799]/40 shadow-xs max-w-4xl mx-auto">
+        {/* Payment / Direct Contribution Box (M-Pesa & e-Mola) */}
+        <div className="glass-card rounded-3xl p-6 sm:p-8 mb-12 sm:mb-16 border border-[#E2C799]/40 shadow-xs max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-[#E2C799]/30 flex items-center justify-center text-[#B8860B]">
               <CreditCard className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-serif text-xl text-[#2C2623] font-medium">
-                Contribuição Direta & Contas
+                Contribuição Direta (M-Pesa & e-Mola)
               </h3>
               <p className="text-xs text-[#6B5A56]">
-                Para nos abençoar com qualquer valor via M-Pesa, e-Mola ou Banco:
+                Para nos abençoar com qualquer valor via M-Pesa ou e-Mola:
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { label: 'M-Pesa', val: paymentInfo.mpesa, key: 'mpesa' },
-              { label: 'e-Mola', val: paymentInfo.emola, key: 'emola' },
-              { label: 'Banco BIM / NIB', val: paymentInfo.bankAccount, key: 'bank' },
-              { label: 'Pix', val: paymentInfo.pix, key: 'pix' },
+              { label: 'M-Pesa', val: paymentInfo.mpesa, raw: '845942760', key: 'mpesa' },
+              { label: 'e-Mola', val: paymentInfo.emola, raw: '864232917', key: 'emola' },
             ].map((method) => (
-              <div key={method.key} className="bg-white rounded-2xl p-4 border border-[#E2C799]/30 flex items-center justify-between gap-2 shadow-2xs">
+              <div key={method.key} className="bg-white rounded-2xl p-4 border border-[#E2C799]/30 flex items-center justify-between gap-3 shadow-2xs">
                 <div className="overflow-hidden">
                   <span className="text-[10px] uppercase font-bold text-[#B8860B] block">{method.label}</span>
-                  <span className="text-xs font-medium text-[#2C2623] truncate block">{method.val}</span>
+                  <span className="text-sm font-semibold text-[#2C2623] truncate block">{method.val}</span>
                 </div>
                 <button
-                  onClick={() => copyToClipboard(method.val, method.key)}
-                  className="p-2 rounded-xl bg-[#FAF7F2] hover:bg-[#E2C799]/30 text-[#B8860B] transition-colors shrink-0"
-                  title="Copiar dados"
+                  onClick={() => copyToClipboard(method.raw, method.key)}
+                  className="px-3 py-2 rounded-xl bg-[#FAF7F2] hover:bg-[#E2C799]/30 text-[#B8860B] text-xs font-semibold flex items-center gap-1 transition-colors shrink-0"
+                  title="Copiar número"
                 >
-                  {copiedKey === method.key ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                  {copiedKey === method.key ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <span className="text-emerald-600">Copiado</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copiar</span>
+                    </>
+                  )}
                 </button>
               </div>
             ))}
@@ -105,7 +113,7 @@ export function GiftRegistry() {
                 </div>
 
                 <div>
-                  <div className="text-xs font-semibold text-[#B8860B] mb-4">
+                  <div className="text-xs font-bold text-[#B8860B] mb-4">
                     Sugestão: {gift.suggestedValue}
                   </div>
 
@@ -113,10 +121,10 @@ export function GiftRegistry() {
                     href={waUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#D4AF37] hover:bg-[#B8860B] text-white text-xs sm:text-sm font-medium shadow-xs transition-colors"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-[#D4AF37] hover:bg-[#B8860B] text-white text-xs sm:text-sm font-medium shadow-xs transition-colors"
                   >
                     <Send className="w-4 h-4" />
-                    Abençoar com este Presente
+                    Abençoar via WhatsApp
                   </a>
                 </div>
               </div>

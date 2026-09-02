@@ -4,7 +4,7 @@ export const weddingData = {
   couple: {
     groom: {
       name: "Alberto",
-      fullName: "Alberto Alves",
+      fullName: "Alberto Novela",
       role: "O Noivo",
       bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Lieza a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
       quote: "Amar é encontrar na felicidade do outro a sua própria paz.",
@@ -12,7 +12,7 @@ export const weddingData = {
     },
     bride: {
       name: "Lieza",
-      fullName: "Lieza Santos",
+      fullName: "Lieza Lopes",
       role: "A Noiva",
       bio: "Com a sua serenidade, elegância e luz própria. A Lieza traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
       quote: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.",
@@ -23,7 +23,7 @@ export const weddingData = {
     tagline: "CASAMENTO EM MAPUTO, MOÇAMBIQUE",
     dateText: "Sábado, 17 de Outubro de 2026",
     targetDate: "2026-10-17T09:00:00",
-    whatsappPhone: "258840000000",
+    whatsappPhone: "258845942760",
     flyerImage: `${base}images/flyer.jpg`
   },
 
@@ -84,7 +84,7 @@ export const weddingData = {
   gallery: [
     {
       id: 1,
-      title: "Alberto & Lieza na Red Carpet",
+      title: "Alberto Novela & Lieza Lopes",
       url: `${base}images/photo8.jpg`
     },
     {
@@ -99,18 +99,28 @@ export const weddingData = {
     },
     {
       id: 4,
-      title: "Cúmplices no Evento",
+      title: "Red Carpet & Celebração",
       url: `${base}images/photo7.jpg`
     },
     {
       id: 5,
       title: "Momentos Especiais",
-      url: `${base}images/photo2.png`
+      url: `${base}images/photo1.png`
     },
     {
       id: 6,
-      title: "Panfleto Oficial do Casamento",
-      url: `${base}images/flyer.jpg`
+      title: "Cúmplices no Amor",
+      url: `${base}images/photo2.png`
+    },
+    {
+      id: 7,
+      title: "Alegria a Dois",
+      url: `${base}images/photo3.png`
+    },
+    {
+      id: 8,
+      title: "União & Cumplicidade",
+      url: `${base}images/photo4.png`
     }
   ],
 
@@ -137,10 +147,9 @@ export const weddingData = {
   gifts: {
     intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Contudo, para quem desejar nos abençoar no início desta nova etapa, preparamos algumas sugestões carinhosas:",
     paymentInfo: {
-      mpesa: "M-Pesa: +258 84 000 0000 (Alberto Alves)",
-      emola: "e-Mola: +258 86 000 0000 (Lieza Santos)",
-      bankAccount: "Millennium BIM: AO06 0000 0000 0000 / NIB: 00010000000000",
-      pix: "Chave Pix / Email: albertolieza@exemplo.com"
+      mpesa: "M-Pesa: 845942760 (Alberto Novela)",
+      emola: "e-Mola: 864232917 (Lieza Lopes)",
+      bankAccount: "Millennium BIM: AO06 0000 0000 0000 / NIB: 00010000000000"
     },
     items: [
       {
@@ -148,35 +157,35 @@ export const weddingData = {
         title: "Conjunto de Panelas & Cozinha",
         description: "Essencial para a nossa cozinha e para prepararmos os nossos pratos favoritos juntos.",
         icon: "Utensils",
-        suggestedValue: "MZN 3.500 / 50€"
+        suggestedValue: "3.500 MT"
       },
       {
         id: 2,
         title: "Liquidificador & Batedeira",
         description: "Para os nossos sumos naturais, batidos saudáveis e pequenos-almoços cheios de energia.",
         icon: "Coffee",
-        suggestedValue: "MZN 2.500 / 35€"
+        suggestedValue: "2.500 MT"
       },
       {
         id: 3,
         title: "Máquina de Café Espresso",
         description: "Para os nossos despertares alegres e momentos de conversa ao fim de tarde.",
         icon: "Coffee",
-        suggestedValue: "MZN 5.000 / 75€"
+        suggestedValue: "5.000 MT"
       },
       {
         id: 4,
         title: "Forninho Elétrico & Torradeira",
         description: "Para jantares práticos e pequenos-almoços estaladiços no nosso lar.",
         icon: "Flame",
-        suggestedValue: "MZN 4.000 / 60€"
+        suggestedValue: "4.000 MT"
       },
       {
         id: 5,
         title: "Jogo de Cama Premium & Acessórios",
         description: "Para garantir noites de descanso aconchegantes na nossa casa nova.",
         icon: "Heart",
-        suggestedValue: "MZN 4.500 / 65€"
+        suggestedValue: "4.500 MT"
       },
       {
         id: 6,

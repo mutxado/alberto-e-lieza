@@ -4,10 +4,10 @@ import { weddingData } from '../data/weddingData';
 
 export function ScheduleLocation() {
   return (
-    <section id="schedule" className="py-20 px-4 bg-white/70 relative overflow-hidden">
+    <section id="schedule" className="py-16 sm:py-20 px-4 bg-white/70 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <span className="font-script text-4xl sm:text-5xl text-[#B8860B] block mb-2">
             Onde & Quando
           </span>
@@ -21,7 +21,7 @@ export function ScheduleLocation() {
         </div>
 
         {/* Events Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12 sm:mb-16">
           {weddingData.events.map((evt, idx) => {
             return (
               <div
@@ -45,7 +45,7 @@ export function ScheduleLocation() {
                     {evt.title}
                   </h3>
                   <h4 className="text-sm font-semibold text-[#B8860B] mb-2 flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5" />
+                    <MapPin className="w-3.5 h-3.5 shrink-0" />
                     {evt.place}
                   </h4>
 
@@ -64,7 +64,7 @@ export function ScheduleLocation() {
                     href={evt.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-full bg-[#D4AF37] hover:bg-[#B8860B] text-white font-medium text-xs shadow-xs transition-colors"
+                    className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-[#D4AF37] hover:bg-[#B8860B] text-white font-medium text-xs shadow-xs transition-colors"
                   >
                     <Navigation className="w-3.5 h-3.5" />
                     Google Maps
@@ -75,34 +75,36 @@ export function ScheduleLocation() {
           })}
         </div>
 
-        {/* Official Flyer Section */}
-        <div className="glass-card rounded-3xl p-6 sm:p-10 border border-[#E2C799]/40 shadow-xs max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-8">
-          <div className="w-full md:w-1/2 h-80 rounded-2xl overflow-hidden shadow-md border-2 border-[#E2C799]/40 group">
+        {/* Official Flyer Section - 100% Full Height Uncropped Display */}
+        <div className="glass-card rounded-3xl p-4 sm:p-8 border border-[#E2C799]/40 shadow-xs max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 sm:gap-8">
+          <div className="w-full md:w-1/2 bg-white p-2 rounded-2xl border border-[#E2C799]/30 shadow-xs flex items-center justify-center overflow-hidden">
             <img
               src={weddingData.couple.flyerImage}
               alt="Panfleto Oficial do Convite"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-auto max-h-[550px] object-contain rounded-xl"
             />
           </div>
-          <div className="w-full md:w-1/2 text-center md:text-left">
+          <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-center">
             <span className="text-xs uppercase tracking-widest font-semibold text-[#B8860B] block mb-2">
               Convite Oficial
             </span>
-            <h3 className="font-serif text-2xl text-[#2C2623] font-medium mb-3">
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#2C2623] font-medium mb-3">
               Panfleto do Casamento
             </h3>
-            <p className="text-sm text-[#5A4D4A] leading-relaxed mb-6">
+            <p className="text-sm text-[#5A4D4A] leading-relaxed mb-6 italic">
               "Com o coração cheio de gratidão, convidamos você para celebrar connosco este dia tão especial!"
             </p>
-            <a
-              href={weddingData.couple.flyerImage}
-              target="_blank"
-              download="Convite_Alberto_e_Lieza.jpg"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2C2623] hover:bg-[#4A3E3D] text-white text-xs font-medium shadow-md transition-all"
-            >
-              <Download className="w-4 h-4 text-[#D4AF37]" />
-              Ver / Baixar Convite Oficial
-            </a>
+            <div>
+              <a
+                href={weddingData.couple.flyerImage}
+                target="_blank"
+                download="Convite_Alberto_e_Lieza.jpg"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#2C2623] hover:bg-[#4A3E3D] text-white text-xs sm:text-sm font-medium shadow-md transition-all w-full sm:w-auto"
+              >
+                <Download className="w-4 h-4 text-[#D4AF37]" />
+                Ver / Baixar Convite Oficial
+              </a>
+            </div>
           </div>
         </div>
 
