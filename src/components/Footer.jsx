@@ -16,7 +16,7 @@ export function Footer() {
         
         {/* Logo */}
         <h2 className="font-script text-5xl sm:text-6xl text-[#D4AF37] mb-2">
-          Alberto & Lieza
+          Alberto & Liesa
         </h2>
         
         <p className="text-xs uppercase tracking-widest text-[#E2C799] font-medium mb-6">
@@ -39,7 +39,7 @@ export function Footer() {
         </button>
 
         <div className="text-xs text-gray-400 border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span>&copy; 2026 Alberto & Lieza. Todos os direitos reservados.</span>
+          <span>&copy; 2026 Alberto & Liesa. Todos os direitos reservados.</span>
           <span className="flex items-center gap-1">
             Criado com <Heart className="w-3.5 h-3.5 text-[#D4AF37] fill-[#D4AF37]" /> para o nosso grande dia
           </span>

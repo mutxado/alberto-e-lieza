@@ -4,25 +4,25 @@ export const weddingData = {
   couple: {
     groom: {
       name: "Alberto",
-      fullName: "Alberto Novela",
+      fullName: "Alberto Francisco Novela",
       role: "O Noivo",
-      bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Lieza a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
+      bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Liesa a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
       quote: "Amar é encontrar na felicidade do outro a sua própria paz.",
       image: `${base}images/photo6.jpg`
     },
     bride: {
-      name: "Lieza",
-      fullName: "Lieza Lopes",
+      name: "Liesa",
+      fullName: "Liesa Lopes",
       role: "A Noiva",
-      bio: "Com a sua serenidade, elegância e luz própria. A Lieza traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
+      bio: "Com a sua serenidade, elegância e luz própria. A Liesa traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
       quote: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.",
       image: `${base}images/photo5.jpg`
     },
     heroBg: `${base}images/photo8.jpg`,
-    hashtag: "#AlbertoELieza2026",
+    hashtag: "#AlbertoELiesa2026",
     tagline: "CASAMENTO EM MAPUTO, MOÇAMBIQUE",
-    dateText: "Sábado, 17 de Outubro de 2026",
-    targetDate: "2026-10-17T09:00:00",
+    dateText: "Sábado, 24 de Outubro de 2026",
+    targetDate: "2026-10-24T09:00:00",
     whatsappPhone: "258845942760",
     flyerImage: `${base}images/flyer.jpg`
   },
@@ -51,40 +51,30 @@ export const weddingData = {
   events: [
     {
       id: "ceremony",
-      title: "Cerimónia Religiosa",
+      title: "Cerimónia Civil & Religiosa",
       time: "09:00 H",
       place: "Igreja Embaixada de Cristo - Sede",
       address: "Cidade de Maputo, Moçambique",
-      details: "A celebração do nosso matrimónio diante de Deus e da comunidade.",
+      details: "A celebração do nosso matrimónio civil e bênção religiosa diante de Deus e da comunidade.",
       mapUrl: "https://maps.google.com/?q=Igreja+Embaixada+de+Cristo+Maputo",
       appleMapUrl: "https://maps.apple.com/?q=Embaixada+de+Cristo+Maputo"
-    },
-    {
-      id: "registry",
-      title: "Registo Civil",
-      time: "11:00 H",
-      place: "1ª Conservatória",
-      address: "Cidade de Maputo, Moçambique",
-      details: "Assinatura oficial e celebração do ato civil perante o conservador.",
-      mapUrl: "https://maps.google.com/?q=1a+Conservatoria+Maputo",
-      appleMapUrl: "https://maps.apple.com/?q=1a+Conservatoria+Maputo"
     },
     {
       id: "reception",
       title: "Copo de Água & Festa",
       time: "15:00 H",
-      place: "Salão de Eventos Horizonte",
-      address: "Cidade de Maputo, Moçambique",
+      place: "Salão de Eventos Ísis & Festas",
+      address: "Rotunda de Chiango (Atrás da Igreja Divina Esperança), Maputo",
       details: "Um convívio inesquecível com almoço/jantar, música, celebração e alegria.",
-      mapUrl: "https://maps.google.com/?q=Salao+de+Eventos+Horizonte+Maputo",
-      appleMapUrl: "https://maps.apple.com/?q=Salao+de+Eventos+Horizonte+Maputo"
+      mapUrl: "https://maps.google.com/?q=Rotunda+de+Chiango+Maputo",
+      appleMapUrl: "https://maps.apple.com/?q=Rotunda+de+Chiango+Maputo"
     }
   ],
 
   gallery: [
     {
       id: 1,
-      title: "Alberto Novela & Lieza Lopes",
+      title: "Alberto Francisco Novela & Liesa Lopes",
       url: `${base}images/photo8.jpg`
     },
     {
@@ -139,7 +129,7 @@ export const weddingData = {
       },
       {
         q: "Até quando posso confirmar a presença?",
-        a: "Agradecemos que confirme a sua presença até ao dia 15 de Setembro de 2026."
+        a: "Agradecemos que confirme a sua presença até ao dia 20 de Setembro de 2026."
       }
     ]
   },
@@ -147,8 +137,8 @@ export const weddingData = {
   gifts: {
     intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Contudo, para quem desejar nos abençoar no início desta nova etapa, preparamos algumas sugestões carinhosas:",
     paymentInfo: {
-      mpesa: "M-Pesa: 845942760 (Alberto Novela)",
-      emola: "e-Mola: 864232917 (Lieza Lopes)",
+      mpesa: "M-Pesa: 845942760 (Alberto Francisco Novela)",
+      emola: "e-Mola: 864232917 (Liesa Lopes)",
       bankAccount: "Millennium BIM: AO06 0000 0000 0000 / NIB: 00010000000000"
     },
     items: [

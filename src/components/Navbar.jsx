@@ -34,7 +34,7 @@ export function Navbar({ isPlaying, togglePlay }) {
         {/* Logo */}
         <a href="#hero" className="flex items-center gap-2 group">
           <span className="font-script text-3xl sm:text-4xl text-[#B8860B] group-hover:text-[#AA7C11] transition-colors">
-            Alberto & Lieza
+            Alberto & Liesa
           </span>
           <Heart className="w-4 h-4 text-[#D4AF37] fill-[#D4AF37] animate-pulse hidden sm:inline-block" />
         </a>
