@@ -31,6 +31,18 @@ export function RsvpForm() {
 
     setSubmitted(true);
 
+    // Save locally in browser storage as backup
+    try {
+      const existing = JSON.parse(localStorage.getItem('alberto_liesa_rsvp_confirmations') || '[]');
+      const newConfirmation = {
+        ...formData,
+        timestamp: new Date().toLocaleString('pt-MZ')
+      };
+      localStorage.setItem('alberto_liesa_rsvp_confirmations', JSON.stringify([newConfirmation, ...existing]));
+    } catch (err) {
+      console.log('Saved confirmation to local storage');
+    }
+
     // Build formatted WhatsApp message
     const textMsg = `Olá! Acabei de confirmar a minha presença no vosso casamento 🎉\n\n` +
       `*Nome:* ${formData.name}\n` +
@@ -60,7 +72,7 @@ export function RsvpForm() {
           </h2>
           <div className="w-24 h-0.5 bg-[#D4AF37]/50 mx-auto mt-4 mb-4" />
           <p className="text-sm sm:text-base text-[#6B5A56] max-w-xl mx-auto">
-            Por favor, confirme a sua presença até ao dia <span className="font-bold text-[#B8860B]">15 de Agosto de 2026</span>.
+            Por favor, confirme a sua presença até ao dia <span className="font-bold text-[#B8860B]">20 de Setembro de 2026</span>.
           </p>
         </div>
 
@@ -75,7 +87,7 @@ export function RsvpForm() {
                 Obrigado pela Confirmação!
               </h3>
               <p className="text-sm sm:text-base text-[#5A4D4A] max-w-md mx-auto mb-8">
-                A sua resposta foi registada com sucesso e a mensagem foi redirecionada para o WhatsApp dos noivos.
+                A sua resposta foi registada com sucesso e a mensagem foi enviada para o WhatsApp dos noivos.
               </p>
               <button
                 onClick={() => setSubmitted(false)}
@@ -96,7 +108,7 @@ export function RsvpForm() {
                 <input
                   type="text"
                   required
-                  placeholder="Ex: João Alves"
+                  placeholder="Ex: Salesio"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-2xl bg-white border border-[#E2C799]/50 focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-hidden text-sm text-[#2C2623] transition-all"
@@ -157,7 +169,7 @@ export function RsvpForm() {
               <div>
                 <label className="block text-xs uppercase tracking-wider font-semibold text-[#4A3E3D] mb-2 flex items-center gap-2">
                   <MessageSquare className="w-4 h-4 text-[#B8860B]" />
-                  Mensagem Carinhosa para Alberto & Lieza
+                  Mensagem Carinhosa para Alberto & Liesa
                 </label>
                 <textarea
                   rows={3}
