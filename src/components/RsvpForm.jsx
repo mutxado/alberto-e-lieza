@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Send, CheckCircle2, User, Users, MessageSquare, Utensils, Heart, FileSpreadsheet } from 'lucide-react';
+import { Send, CheckCircle2, User, Users, MessageSquare, Utensils, Heart } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
 export function RsvpForm() {
@@ -14,7 +14,6 @@ export function RsvpForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // URL do Webhook do Google Sheets (pode ser configurado no weddingData.js ou alterado aqui)
   const googleSheetsUrl = weddingData.googleSheetsUrl || '';
 
   const handleSubmit = async (e) => {
@@ -24,26 +23,27 @@ export function RsvpForm() {
 
     setIsSubmitting(true);
 
-    // 1. Enviar os dados para o Google Sheets (se o webhook estiver ativo)
+    // 1. Enviar os dados para o Google Sheets em formato de formulário (URLSearchParams)
     if (googleSheetsUrl) {
       try {
+        const bodyParams = new URLSearchParams();
+        bodyParams.append('timestamp', new Date().toLocaleString('pt-MZ'));
+        bodyParams.append('name', formData.name);
+        bodyParams.append('guests', formData.guests);
+        bodyParams.append('attending', formData.attending === 'sim' ? 'Sim' : 'Não');
+        bodyParams.append('dietary', formData.dietary || 'Nenhuma');
+        bodyParams.append('message', formData.message || 'Felicidades aos noivos!');
+
         await fetch(googleSheetsUrl, {
           method: 'POST',
           mode: 'no-cors',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: JSON.stringify({
-            timestamp: new Date().toLocaleString('pt-MZ'),
-            name: formData.name,
-            guests: formData.guests,
-            attending: formData.attending === 'sim' ? 'Sim' : 'Não',
-            dietary: formData.dietary || 'Nenhuma',
-            message: formData.message || 'Felicidades aos noivos!'
-          }),
+          body: bodyParams.toString()
         });
       } catch (err) {
-        console.log('Registo no Google Sheets processado:', err);
+        console.log('Registo no Google Sheets enviado:', err);
       }
     }
 
