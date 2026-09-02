@@ -1,3 +1,5 @@
+const base = import.meta.env.BASE_URL || '/';
+
 export const weddingData = {
   couple: {
     groom: {
@@ -6,7 +8,7 @@ export const weddingData = {
       role: "O Noivo",
       bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Lieza a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
       quote: "Amar é encontrar na felicidade do outro a sua própria paz.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
+      image: `${base}images/photo3.png`
     },
     bride: {
       name: "Lieza",
@@ -14,13 +16,14 @@ export const weddingData = {
       role: "A Noiva",
       bio: "Com a sua serenidade, elegância e luz própria. A Lieza traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
       quote: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800"
+      image: `${base}images/photo2.png`
     },
     hashtag: "#AlbertoELieza2026",
     tagline: "CASAMENTO EM MAPUTO, MOÇAMBIQUE",
-    dateText: "19 de Setembro de 2026 · 14:00H",
-    targetDate: "2026-09-19T14:00:00",
-    whatsappPhone: "258840000000" // Número de WhatsApp para confirmação e presentes
+    dateText: "Sábado, 17 de Outubro de 2026",
+    targetDate: "2026-10-17T09:00:00",
+    whatsappPhone: "258840000000",
+    flyerImage: `${base}images/flyer.jpg`
   },
 
   story: [
@@ -28,19 +31,19 @@ export const weddingData = {
       year: "2024",
       title: "O Primeiro Olhar",
       description: "Conhecemo-nos num momento especial onde os nossos caminhos se cruzaram de forma simples, mas profundamente intencional. Entre conversas sinceras e sorrisos, nasceu a certeza de que Deus preparava algo maior.",
-      image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800"
+      image: `${base}images/photo1.png`
     },
     {
       year: "2025",
       title: "A Certeza do Propósito",
       description: "Cada dia juntos reforçou os nossos valores, amizade e cumplicidade. Aprendemos que o verdadeiro amor é edificar o outro, cuidar com dedicação e caminhar com fé lado a lado.",
-      image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=800"
+      image: `${base}images/photo4.png`
     },
     {
       year: "2026",
       title: "O Pedido Inesquecível",
-      description: "Sob o olhar carinhoso das pessoas que amamos, o Alberto fez a pergunta que mudou as nossas vidas para sempre. A resposta veio de coração cheio: SIM para a vida inteira!",
-      image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800"
+      description: "Com o coração cheio de gratidão, convidamos você para celebrar connosco este dia tão especial! SIM para a vida inteira!",
+      image: `${base}images/photo3.png`
     }
   ],
 
@@ -48,55 +51,60 @@ export const weddingData = {
     {
       id: "ceremony",
       title: "Cerimónia Religiosa",
-      time: "14:00 H",
-      place: "Igreja Central de Maputo",
-      address: "Av. Karl Marx / Av. Ho Chi Min, Maputo - Moçambique",
-      details: "A celebração do nosso matrimónio diante de Deus e dos nossos familiares e amigos.",
-      mapUrl: "https://maps.google.com/?q=Maputo+Central",
-      appleMapUrl: "https://maps.apple.com/?q=Maputo"
+      time: "09:00 H",
+      place: "Igreja Embaixada de Cristo - Sede",
+      address: "Cidade de Maputo, Moçambique",
+      details: "A celebração do nosso matrimónio diante de Deus e da comunidade.",
+      mapUrl: "https://maps.google.com/?q=Igreja+Embaixada+de+Cristo+Maputo",
+      appleMapUrl: "https://maps.apple.com/?q=Embaixada+de+Cristo+Maputo"
+    },
+    {
+      id: "registry",
+      title: "Registo Civil",
+      time: "11:00 H",
+      place: "1ª Conservatória",
+      address: "Cidade de Maputo, Moçambique",
+      details: "Assinatura oficial e celebração do ato civil perante o conservador.",
+      mapUrl: "https://maps.google.com/?q=1a+Conservatoria+Maputo",
+      appleMapUrl: "https://maps.apple.com/?q=1a+Conservatoria+Maputo"
     },
     {
       id: "reception",
       title: "Copo de Água & Festa",
-      time: "17:00 H",
-      place: "Salão de Festas Reina & Jardim",
-      address: "Avenida de Moçambique, Marracuene / Maputo",
-      details: "Um jantar inesquecível com música, celebração, brindes e muita alegria.",
-      mapUrl: "https://maps.google.com/?q=Hotel+Reina+Maputo",
-      appleMapUrl: "https://maps.apple.com/?q=Hotel+Reina+Maputo"
+      time: "15:00 H",
+      place: "Salão de Eventos Horizonte",
+      address: "Cidade de Maputo, Moçambique",
+      details: "Um convívio inesquecível com almoço/jantar, música, celebração e alegria.",
+      mapUrl: "https://maps.google.com/?q=Salao+de+Eventos+Horizonte+Maputo",
+      appleMapUrl: "https://maps.apple.com/?q=Salao+de+Eventos+Horizonte+Maputo"
     }
   ],
 
   gallery: [
     {
       id: 1,
-      title: "Cúmplices no Amor",
-      url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200"
+      title: "Alberto & Lieza",
+      url: `${base}images/photo3.png`
     },
     {
       id: 2,
-      title: "Momentos Especiais",
-      url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200"
+      title: "Momentos Felizes",
+      url: `${base}images/photo2.png`
     },
     {
       id: 3,
-      title: "Sorrisos Sinceros",
-      url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1200"
+      title: "Cúmplices no Amor",
+      url: `${base}images/photo1.png`
     },
     {
       id: 4,
-      title: "Amor & Luz",
-      url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=1200"
+      title: "Sorrisos Sinceros",
+      url: `${base}images/photo4.png`
     },
     {
       id: 5,
-      title: "Preparativos",
-      url: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=1200"
-    },
-    {
-      id: 6,
-      title: "Para Sempre",
-      url: "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=1200"
+      title: "Panfleto Oficial do Casamento",
+      url: `${base}images/flyer.jpg`
     }
   ],
 
@@ -115,7 +123,7 @@ export const weddingData = {
       },
       {
         q: "Até quando posso confirmar a presença?",
-        a: "Agradecemos que confirme a sua presença até ao dia 15 de Agosto de 2026."
+        a: "Agradecemos que confirme a sua presença até ao dia 15 de Setembro de 2026."
       }
     ]
   },

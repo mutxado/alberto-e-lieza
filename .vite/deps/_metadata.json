@@ -1,0 +1,40 @@
+{
+  "hash": "c4c6b2b3",
+  "configHash": "f00d7aeb",
+  "lockfileHash": "e2840178",
+  "browserHash": "035a8521",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "0affba88",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "55a4c7b4",
+      "needsInterop": true
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "33b46ac8",
+      "needsInterop": false
+    },
+    "canvas-confetti": {
+      "src": "../../node_modules/canvas-confetti/dist/confetti.module.mjs",
+      "file": "canvas-confetti.js",
+      "fileHash": "2eef2b96",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-5DZYP7DE": {
+      "file": "chunk-5DZYP7DE.js"
+    },
+    "chunk-G3PMV62Z": {
+      "file": "chunk-G3PMV62Z.js"
+    }
+  }
+}
