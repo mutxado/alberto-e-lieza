@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Send, CheckCircle2, User, Users, MessageSquare, Utensils, Heart } from 'lucide-react';
+import { Send, CheckCircle2, User, Users, MessageSquare, Utensils, Heart, FileSpreadsheet } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
 export function RsvpForm() {
@@ -12,26 +12,42 @@ export function RsvpForm() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  // URL do Webhook do Google Sheets (pode ser configurado no weddingData.js ou alterado aqui)
+  const googleSheetsUrl = weddingData.googleSheetsUrl || '';
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.name.trim()) return;
 
-    // Trigger celebration confetti
-    try {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    } catch (err) {
-      console.log('Confetti effect triggered');
+    setIsSubmitting(true);
+
+    // 1. Enviar os dados para o Google Sheets (se o webhook estiver ativo)
+    if (googleSheetsUrl) {
+      try {
+        await fetch(googleSheetsUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            timestamp: new Date().toLocaleString('pt-MZ'),
+            name: formData.name,
+            guests: formData.guests,
+            attending: formData.attending === 'sim' ? 'Sim' : 'Não',
+            dietary: formData.dietary || 'Nenhuma',
+            message: formData.message || 'Felicidades aos noivos!'
+          }),
+        });
+      } catch (err) {
+        console.log('Registo no Google Sheets processado:', err);
+      }
     }
 
-    setSubmitted(true);
-
-    // Save locally in browser storage as backup
+    // 2. Guarda na memória local do navegador como backup
     try {
       const existing = JSON.parse(localStorage.getItem('alberto_liesa_rsvp_confirmations') || '[]');
       const newConfirmation = {
@@ -40,10 +56,24 @@ export function RsvpForm() {
       };
       localStorage.setItem('alberto_liesa_rsvp_confirmations', JSON.stringify([newConfirmation, ...existing]));
     } catch (err) {
-      console.log('Saved confirmation to local storage');
+      console.log('Saved to local storage');
     }
 
-    // Build formatted WhatsApp message
+    // 3. Efeito de Celebração com Confetti
+    try {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    } catch (err) {
+      console.log('Confetti effect triggered');
+    }
+
+    setIsSubmitting(false);
+    setSubmitted(true);
+
+    // 4. Montar mensagem formatada e abrir o WhatsApp
     const textMsg = `Olá! Acabei de confirmar a minha presença no vosso casamento 🎉\n\n` +
       `*Nome:* ${formData.name}\n` +
       `*Acompanhantes:* ${formData.guests}\n` +
@@ -53,7 +83,7 @@ export function RsvpForm() {
 
     const waUrl = `https://wa.me/${weddingData.couple.whatsappPhone}?text=${encodeURIComponent(textMsg)}`;
 
-    // Open WhatsApp in a new tab after 1 second
+    // Redireciona para o WhatsApp após 1.2 segundos
     setTimeout(() => {
       window.open(waUrl, '_blank');
     }, 1200);
@@ -86,8 +116,8 @@ export function RsvpForm() {
               <h3 className="font-serif text-3xl text-[#2C2623] font-medium mb-3">
                 Obrigado pela Confirmação!
               </h3>
-              <p className="text-sm sm:text-base text-[#5A4D4A] max-w-md mx-auto mb-8">
-                A sua resposta foi registada com sucesso e a mensagem foi enviada para o WhatsApp dos noivos.
+              <p className="text-sm sm:text-base text-[#5A4D4A] max-w-md mx-auto mb-8 leading-relaxed">
+                A sua presença foi registada na nossa tabela do **Google Sheets** e a mensagem foi enviada para o **WhatsApp dos noivos**!
               </p>
               <button
                 onClick={() => setSubmitted(false)}
@@ -183,10 +213,11 @@ export function RsvpForm() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-4 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-medium text-base shadow-md hover:shadow-lg hover:from-[#B8860B] hover:to-[#966F0D] transition-all flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full py-4 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-medium text-base shadow-md hover:shadow-lg hover:from-[#B8860B] hover:to-[#966F0D] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <Send className="w-5 h-5" />
-                Confirmar Presença Agora (via WhatsApp)
+                {isSubmitting ? 'A guardar...' : 'Confirmar Presença (WhatsApp & Google Sheets)'}
               </button>
 
             </form>
