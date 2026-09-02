@@ -1,7 +1,7 @@
 const base = import.meta.env.BASE_URL || '/';
 
 export const weddingData = {
-  googleSheetsUrl: "https://script.google.com/macros/s/AKfycbxXqTrCVAfu4CY0YxUVLM9dQg63kx7PPPuxzCgiJwRohj1tQOtIrEHC0VBtUO9Pa2BBrA/exec",
+  googleSheetsUrl: "https://script.google.com/macros/s/AKfycbzyPytuyyEYI6Or7QEzTh6VckaoXR80TRgRo5MbFDKhb6mExRYnOlljSsZr3z3haXnr/exec",
 
   couple: {
     groom: {
