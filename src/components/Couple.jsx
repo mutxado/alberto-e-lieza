@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Quote } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
 export function Couple() {
@@ -24,11 +24,11 @@ export function Couple() {
           
           {/* Groom Card */}
           <div className="glass-card rounded-3xl p-6 sm:p-8 shadow-xs border border-[#E2C799]/40 flex flex-col items-center text-center hover:shadow-md transition-all group">
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden mb-6 border-4 border-[#FAF7F2] shadow-md group-hover:scale-105 transition-transform duration-500">
+            <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden mb-6 border-4 border-[#FAF7F2] shadow-md group-hover:scale-105 transition-transform duration-500">
               <img
                 src={groom.image}
                 alt={groom.fullName}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[center_15%]"
               />
             </div>
             
@@ -53,11 +53,11 @@ export function Couple() {
 
           {/* Bride Card */}
           <div className="glass-card rounded-3xl p-6 sm:p-8 shadow-xs border border-[#E2C799]/40 flex flex-col items-center text-center hover:shadow-md transition-all group">
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden mb-6 border-4 border-[#FAF7F2] shadow-md group-hover:scale-105 transition-transform duration-500">
+            <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden mb-6 border-4 border-[#FAF7F2] shadow-md group-hover:scale-105 transition-transform duration-500">
               <img
                 src={bride.image}
                 alt={bride.fullName}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[center_15%]"
               />
             </div>
             

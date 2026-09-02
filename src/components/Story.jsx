@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Sparkles } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
 export function Story() {
@@ -46,11 +46,11 @@ export function Story() {
                   <div className="glass-card rounded-2xl p-6 sm:p-8 shadow-xs border border-[#E2C799]/30 hover:shadow-md transition-all">
                     
                     {/* Image */}
-                    <div className="relative h-48 sm:h-56 rounded-xl overflow-hidden mb-6 group">
+                    <div className="relative h-56 sm:h-64 rounded-xl overflow-hidden mb-6 group">
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover object-[center_15%] group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute top-3 left-3 bg-[#FAF7F2]/90 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-serif font-bold text-[#B8860B] border border-[#D4AF37]/30 shadow-xs">
                         {item.year}

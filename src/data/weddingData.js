@@ -8,7 +8,7 @@ export const weddingData = {
       role: "O Noivo",
       bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Lieza a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
       quote: "Amar é encontrar na felicidade do outro a sua própria paz.",
-      image: `${base}images/photo3.png`
+      image: `${base}images/photo6.jpg`
     },
     bride: {
       name: "Lieza",
@@ -16,8 +16,9 @@ export const weddingData = {
       role: "A Noiva",
       bio: "Com a sua serenidade, elegância e luz própria. A Lieza traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
       quote: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.",
-      image: `${base}images/photo2.png`
+      image: `${base}images/photo5.jpg`
     },
+    heroBg: `${base}images/photo8.jpg`,
     hashtag: "#AlbertoELieza2026",
     tagline: "CASAMENTO EM MAPUTO, MOÇAMBIQUE",
     dateText: "Sábado, 17 de Outubro de 2026",
@@ -31,19 +32,19 @@ export const weddingData = {
       year: "2024",
       title: "O Primeiro Olhar",
       description: "Conhecemo-nos num momento especial onde os nossos caminhos se cruzaram de forma simples, mas profundamente intencional. Entre conversas sinceras e sorrisos, nasceu a certeza de que Deus preparava algo maior.",
-      image: `${base}images/photo1.png`
+      image: `${base}images/photo8.jpg`
     },
     {
       year: "2025",
       title: "A Certeza do Propósito",
       description: "Cada dia juntos reforçou os nossos valores, amizade e cumplicidade. Aprendemos que o verdadeiro amor é edificar o outro, cuidar com dedicação e caminhar com fé lado a lado.",
-      image: `${base}images/photo4.png`
+      image: `${base}images/photo5.jpg`
     },
     {
       year: "2026",
       title: "O Pedido Inesquecível",
       description: "Com o coração cheio de gratidão, convidamos você para celebrar connosco este dia tão especial! SIM para a vida inteira!",
-      image: `${base}images/photo3.png`
+      image: `${base}images/photo6.jpg`
     }
   ],
 
@@ -83,26 +84,31 @@ export const weddingData = {
   gallery: [
     {
       id: 1,
-      title: "Alberto & Lieza",
-      url: `${base}images/photo3.png`
+      title: "Alberto & Lieza na Red Carpet",
+      url: `${base}images/photo8.jpg`
     },
     {
       id: 2,
-      title: "Momentos Felizes",
-      url: `${base}images/photo2.png`
+      title: "Sorrisos Radiantes",
+      url: `${base}images/photo5.jpg`
     },
     {
       id: 3,
-      title: "Cúmplices no Amor",
-      url: `${base}images/photo1.png`
+      title: "Elegância & Amor",
+      url: `${base}images/photo6.jpg`
     },
     {
       id: 4,
-      title: "Sorrisos Sinceros",
-      url: `${base}images/photo4.png`
+      title: "Cúmplices no Evento",
+      url: `${base}images/photo7.jpg`
     },
     {
       id: 5,
+      title: "Momentos Especiais",
+      url: `${base}images/photo2.png`
+    },
+    {
+      id: 6,
       title: "Panfleto Oficial do Casamento",
       url: `${base}images/flyer.jpg`
     }

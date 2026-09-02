@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Camera, X, Maximize2 } from 'lucide-react';
+import { X, Maximize2 } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
 export function Gallery() {
@@ -33,7 +33,7 @@ export function Gallery() {
               <img
                 src={item.url}
                 alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover object-[center_15%] group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                 <div className="text-white flex items-center justify-between w-full">
