@@ -1,8 +1,8 @@
 import React from 'react';
-import { Heart, ArrowUp } from 'lucide-react';
+import { Heart, ArrowUp, Lock } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
-export function Footer() {
+export function Footer({ onOpenAdmin }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -29,14 +29,24 @@ export function Footer() {
           "O amor nunca falha. Onde quer que fores, irei eu, e onde quer que pousares à noite, ali pousarei eu."
         </p>
 
-        {/* Back to top button */}
-        <button
-          onClick={scrollToTop}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs text-amber-200 border border-[#D4AF37]/30 transition-all mb-8"
-        >
-          <ArrowUp className="w-3.5 h-3.5" />
-          Voltar ao topo
-        </button>
+        {/* Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+          <button
+            onClick={scrollToTop}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs text-amber-200 border border-[#D4AF37]/30 transition-all"
+          >
+            <ArrowUp className="w-3.5 h-3.5" />
+            Voltar ao topo
+          </button>
+
+          <button
+            onClick={onOpenAdmin}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/40 text-xs text-[#E2C799] border border-[#D4AF37]/40 transition-all"
+          >
+            <Lock className="w-3.5 h-3.5" />
+            Área dos Noivos (Painel Privado)
+          </button>
+        </div>
 
         <div className="text-xs text-gray-400 border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span>&copy; 2026 Alberto & Liesa. Todos os direitos reservados.</span>
