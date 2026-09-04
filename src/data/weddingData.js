@@ -10,7 +10,7 @@ export const weddingData = {
       role: "O Noivo",
       bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Liesa a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
       quote: "Amar é encontrar na felicidade do outro a sua própria paz.",
-      image: `${base}images/photo6.jpg`
+      image: `${base}images/groom_portrait.jpg`
     },
     bride: {
       name: "Liesa",
@@ -18,14 +18,14 @@ export const weddingData = {
       role: "A Noiva",
       bio: "Com a sua serenidade, elegância e luz própria. A Liesa traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
       quote: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.",
-      image: `${base}images/photo5.jpg`
+      image: `${base}images/bride_portrait.jpg`
     },
     heroBg: `${base}images/photo8.jpg`,
     hashtag: "#AlbertoELiesa2026",
     tagline: "CASAMENTO EM MAPUTO, MOÇAMBIQUE",
     dateText: "Sábado, 24 de Outubro de 2026",
     targetDate: "2026-10-24T09:00:00",
-    whatsappPhone: "258845942760",
+    whatsappPhone: "258845942765",
     flyerImage: `${base}images/flyer.jpg`
   },
 
@@ -96,23 +96,23 @@ export const weddingData = {
     },
     {
       id: 5,
+      title: "Alberto Francisco Novela",
+      url: `${base}images/groom_portrait.jpg`
+    },
+    {
+      id: 6,
+      title: "Liesa Lopes",
+      url: `${base}images/bride_portrait.jpg`
+    },
+    {
+      id: 7,
       title: "Momentos Especiais",
       url: `${base}images/photo1.png`
     },
     {
-      id: 6,
+      id: 8,
       title: "Cúmplices no Amor",
       url: `${base}images/photo2.png`
-    },
-    {
-      id: 7,
-      title: "Alegria a Dois",
-      url: `${base}images/photo3.png`
-    },
-    {
-      id: 8,
-      title: "União & Cumplicidade",
-      url: `${base}images/photo4.png`
     }
   ],
 
@@ -139,7 +139,7 @@ export const weddingData = {
   gifts: {
     intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Contudo, para quem desejar nos abençoar no início desta nova etapa, preparamos algumas sugestões carinhosas:",
     paymentInfo: {
-      mpesa: "M-Pesa: 845942760 (Alberto Francisco Novela)",
+      mpesa: "M-Pesa: 845942765 (Alberto Francisco Novela)",
       emola: "e-Mola: 864232917 (Liesa Lopes)",
       bankAccount: "Millennium BIM: AO06 0000 0000 0000 / NIB: 00010000000000"
     },
