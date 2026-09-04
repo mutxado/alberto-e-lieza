@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Send, CheckCircle2, User, Users, MessageSquare, Utensils, Heart } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
+import { saveRsvpToFirestore } from '../firebase';
 
 export function RsvpForm() {
   const [formData, setFormData] = useState({
@@ -23,16 +24,33 @@ export function RsvpForm() {
 
     setIsSubmitting(true);
 
-    // 1. Enviar os dados para o Google Sheets em formato de formulário (URLSearchParams)
+    const rsvpPayload = {
+      name: formData.name.trim(),
+      guests: parseInt(formData.guests, 10) || 1,
+      attending: formData.attending,
+      dietary: formData.dietary.trim() || 'Nenhuma',
+      message: formData.message.trim() || 'Felicidades aos noivos!',
+      timestamp: new Date().toLocaleString('pt-MZ')
+    };
+
+    // 1. Guardar na Base de Dados Cloud do Firebase Firestore
+    try {
+      await saveRsvpToFirestore(rsvpPayload);
+      console.log('✅ Confirmado e salvo no Firebase Firestore!');
+    } catch (err) {
+      console.log('Firebase sync:', err);
+    }
+
+    // 2. Enviar para Google Sheets (se ativo)
     if (googleSheetsUrl) {
       try {
         const bodyParams = new URLSearchParams();
-        bodyParams.append('timestamp', new Date().toLocaleString('pt-MZ'));
-        bodyParams.append('name', formData.name);
-        bodyParams.append('guests', formData.guests);
-        bodyParams.append('attending', formData.attending === 'sim' ? 'Sim' : 'Não');
-        bodyParams.append('dietary', formData.dietary || 'Nenhuma');
-        bodyParams.append('message', formData.message || 'Felicidades aos noivos!');
+        bodyParams.append('timestamp', rsvpPayload.timestamp);
+        bodyParams.append('name', rsvpPayload.name);
+        bodyParams.append('guests', rsvpPayload.guests.toString());
+        bodyParams.append('attending', rsvpPayload.attending === 'sim' ? 'Sim' : 'Não');
+        bodyParams.append('dietary', rsvpPayload.dietary);
+        bodyParams.append('message', rsvpPayload.message);
 
         await fetch(googleSheetsUrl, {
           method: 'POST',
@@ -43,23 +61,19 @@ export function RsvpForm() {
           body: bodyParams.toString()
         });
       } catch (err) {
-        console.log('Registo no Google Sheets enviado:', err);
+        console.log('Google Sheets sync:', err);
       }
     }
 
-    // 2. Guarda na memória local do navegador como backup
+    // 3. Guarda na memória local do navegador como backup
     try {
       const existing = JSON.parse(localStorage.getItem('alberto_liesa_rsvp_confirmations') || '[]');
-      const newConfirmation = {
-        ...formData,
-        timestamp: new Date().toLocaleString('pt-MZ')
-      };
-      localStorage.setItem('alberto_liesa_rsvp_confirmations', JSON.stringify([newConfirmation, ...existing]));
+      localStorage.setItem('alberto_liesa_rsvp_confirmations', JSON.stringify([rsvpPayload, ...existing]));
     } catch (err) {
-      console.log('Saved to local storage');
+      console.log('Local storage backup error:', err);
     }
 
-    // 3. Efeito de Celebração com Confetti
+    // 4. Efeito de Celebração com Confetti
     try {
       confetti({
         particleCount: 120,
@@ -73,13 +87,13 @@ export function RsvpForm() {
     setIsSubmitting(false);
     setSubmitted(true);
 
-    // 4. Montar mensagem formatada e abrir o WhatsApp
+    // 5. Montar mensagem formatada e abrir o WhatsApp
     const textMsg = `Olá! Acabei de confirmar a minha presença no vosso casamento 🎉\n\n` +
-      `*Nome:* ${formData.name}\n` +
-      `*Acompanhantes:* ${formData.guests}\n` +
-      `*Confirmação:* ${formData.attending === 'sim' ? 'Sim, estarei presente!' : 'Não poderei comparecer'}\n` +
-      `*Restrição Alimentar:* ${formData.dietary || 'Nenhuma'}\n` +
-      `*Mensagem:* ${formData.message || 'Felicidades aos noivos!'}`;
+      `*Nome:* ${rsvpPayload.name}\n` +
+      `*Acompanhantes:* ${rsvpPayload.guests}\n` +
+      `*Confirmação:* ${rsvpPayload.attending === 'sim' ? 'Sim, estarei presente!' : 'Não poderei comparecer'}\n` +
+      `*Restrição Alimentar:* ${rsvpPayload.dietary}\n` +
+      `*Mensagem:* ${rsvpPayload.message}`;
 
     const waUrl = `https://wa.me/${weddingData.couple.whatsappPhone}?text=${encodeURIComponent(textMsg)}`;
 
@@ -117,7 +131,7 @@ export function RsvpForm() {
                 Obrigado pela Confirmação!
               </h3>
               <p className="text-sm sm:text-base text-[#5A4D4A] max-w-md mx-auto mb-8 leading-relaxed">
-                A sua presença foi registada na nossa tabela do **Google Sheets** e a mensagem foi enviada para o **WhatsApp dos noivos**!
+                A sua presença foi guardada na base de dados dos noivos e a mensagem foi enviada para o **WhatsApp**!
               </p>
               <button
                 onClick={() => setSubmitted(false)}
@@ -217,7 +231,7 @@ export function RsvpForm() {
                 className="w-full py-4 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-medium text-base shadow-md hover:shadow-lg hover:from-[#B8860B] hover:to-[#966F0D] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <Send className="w-5 h-5" />
-                {isSubmitting ? 'A guardar...' : 'Confirmar Presença (WhatsApp & Google Sheets)'}
+                {isSubmitting ? 'A guardar na nuvem...' : 'Confirmar Presença'}
               </button>
 
             </form>

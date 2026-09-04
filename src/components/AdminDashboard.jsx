@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Lock, Users, CheckCircle, XCircle, Search, Download, Trash2, LogOut, Heart, ArrowLeft, RefreshCw } from 'lucide-react';
+import { Lock, Users, CheckCircle, XCircle, Search, Download, Trash2, LogOut, Heart, ArrowLeft, RefreshCw, Cloud, Database } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
+import { subscribeToRsvps, deleteRsvpFromFirestore, isFirebaseReady } from '../firebase';
 
 export function AdminDashboard({ onBack }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -9,25 +10,34 @@ export function AdminDashboard({ onBack }) {
   const [confirmations, setConfirmations] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState('todos');
+  const [loading, setLoading] = useState(true);
 
   // Master Admin Password (default: alberto2026)
   const ADMIN_PASSWORD = weddingData.adminPassword || 'alberto2026';
 
-  // Load confirmations from cloud / localStorage
-  const loadConfirmations = () => {
-    try {
-      const stored = JSON.parse(localStorage.getItem('alberto_liesa_rsvp_confirmations') || '[]');
-      setConfirmations(stored);
-    } catch (e) {
-      console.log('Error loading confirmations:', e);
-      setConfirmations([]);
-    }
-  };
-
+  // Load confirmations (Firebase Firestore real-time + localStorage backup)
   useEffect(() => {
-    if (isAuthenticated) {
-      loadConfirmations();
-    }
+    if (!isAuthenticated) return;
+
+    setLoading(true);
+
+    // 1. Ouvinte em tempo real do Firebase Firestore
+    const unsubscribe = subscribeToRsvps((cloudRsvps) => {
+      if (cloudRsvps && cloudRsvps.length > 0) {
+        setConfirmations(cloudRsvps);
+      } else {
+        // Fallback local se a nuvem estiver vazia
+        try {
+          const stored = JSON.parse(localStorage.getItem('alberto_liesa_rsvp_confirmations') || '[]');
+          setConfirmations(stored);
+        } catch (e) {
+          setConfirmations([]);
+        }
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, [isAuthenticated]);
 
   const handleLogin = (e) => {
@@ -40,9 +50,18 @@ export function AdminDashboard({ onBack }) {
     }
   };
 
-  const handleDelete = (idToDelete) => {
-    if (window.confirm('Tem a certeza que deseja remover este registo?')) {
-      const updated = confirmations.filter((item, idx) => (item.id || idx) !== idToDelete);
+  const handleDelete = async (item) => {
+    if (window.confirm(`Tem a certeza que deseja remover a confirmação de "${item.name}"?`)) {
+      try {
+        if (item.id && typeof item.id === 'string' && item.id.length > 10) {
+          await deleteRsvpFromFirestore(item.id);
+        }
+      } catch (err) {
+        console.error("Erro ao eliminar do Firebase:", err);
+      }
+
+      // Atualizar local
+      const updated = confirmations.filter(c => c.id !== item.id && c.name !== item.name);
       setConfirmations(updated);
       localStorage.setItem('alberto_liesa_rsvp_confirmations', JSON.stringify(updated));
     }
@@ -53,7 +72,7 @@ export function AdminDashboard({ onBack }) {
 
     const headers = ['Data/Hora', 'Nome Completo', 'Lugares Reservados', 'Confirma Presença?', 'Restrições Alimentares', 'Mensagem'];
     const rows = confirmations.map(c => [
-      `"${c.timestamp || ''}"`,
+      `"${c.timestamp || c.createdDate || ''}"`,
       `"${c.name || ''}"`,
       `"${c.guests || 1}"`,
       `"${c.attending === 'sim' ? 'Sim' : 'Não'}"`,
@@ -82,7 +101,6 @@ export function AdminDashboard({ onBack }) {
   });
 
   // Calculate metrics
-  const totalResponses = confirmations.length;
   const totalConfirmedGuests = confirmations
     .filter(c => c.attending === 'sim')
     .reduce((sum, c) => sum + parseInt(c.guests || '1', 10), 0);
@@ -97,10 +115,10 @@ export function AdminDashboard({ onBack }) {
             <Lock className="w-8 h-8" />
           </div>
           <h2 className="font-serif text-3xl text-[#2C2623] font-medium mb-2">
-            Painel Privado
+            Painel Privado dos Noivos
           </h2>
           <p className="text-xs text-[#6B5A56] mb-8">
-            Área reservada exclusivamente aos noivos (Alberto Francisco Novela & Liesa Lopes).
+            Área reservada para gestão de presenças em tempo real em qualquer telemóvel ou computador.
           </p>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -146,22 +164,23 @@ export function AdminDashboard({ onBack }) {
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 bg-white/80 p-6 rounded-3xl border border-[#E2C799]/40 shadow-xs">
           <div>
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#B8860B] flex items-center gap-1.5">
-              <Heart className="w-3.5 h-3.5 fill-[#D4AF37] text-[#D4AF37]" />
-              Painel de Gestão dos Noivos
-            </span>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs uppercase tracking-widest font-semibold text-[#B8860B] flex items-center gap-1.5">
+                <Heart className="w-3.5 h-3.5 fill-[#D4AF37] text-[#D4AF37]" />
+                Painel de Gestão dos Noivos
+              </span>
+              <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                isFirebaseReady ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-800'
+              }`}>
+                <Cloud className="w-3 h-3" />
+                {isFirebaseReady ? 'Firebase Conectado' : 'Modo Nuvem / Local'}
+              </span>
+            </div>
             <h1 className="font-serif text-3xl text-[#2C2623] font-medium">
               Confirmações de Presença (RSVP)
             </h1>
           </div>
           <div className="flex items-center gap-3">
-            <button
-              onClick={loadConfirmations}
-              className="p-2.5 rounded-2xl bg-[#FAF7F2] hover:bg-[#E2C799]/30 text-[#B8860B] transition-colors"
-              title="Atualizar dados"
-            >
-              <RefreshCw className="w-5 h-5" />
-            </button>
             <button
               onClick={exportToCSV}
               disabled={confirmations.length === 0}
@@ -248,7 +267,12 @@ export function AdminDashboard({ onBack }) {
 
         {/* Table / List */}
         <div className="glass-card rounded-3xl border border-[#E2C799]/40 shadow-xs overflow-hidden">
-          {filteredConfirmations.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-12 text-gray-500">
+              <RefreshCw className="w-8 h-8 mx-auto text-[#B8860B] animate-spin mb-3" />
+              <p className="text-xs">A carregar confirmações em tempo real...</p>
+            </div>
+          ) : filteredConfirmations.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
               <Users className="w-12 h-12 mx-auto text-gray-300 mb-3" />
               <p className="font-serif text-lg font-medium text-gray-600">Nenhuma confirmação encontrada</p>
@@ -272,7 +296,7 @@ export function AdminDashboard({ onBack }) {
                   {filteredConfirmations.map((c, idx) => (
                     <tr key={c.id || idx} className="hover:bg-white/60 transition-colors">
                       <td className="p-4 font-mono text-[11px] text-gray-500 whitespace-nowrap">
-                        {c.timestamp || 'Hoje'}
+                        {c.timestamp || c.createdDate || 'Hoje'}
                       </td>
                       <td className="p-4 font-semibold text-[#2C2623]">
                         {c.name}
@@ -297,7 +321,7 @@ export function AdminDashboard({ onBack }) {
                       </td>
                       <td className="p-4 text-center">
                         <button
-                          onClick={() => handleDelete(c.id || idx)}
+                          onClick={() => handleDelete(c)}
                           className="p-1.5 rounded-lg text-gray-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
                           title="Remover registo"
                         >
