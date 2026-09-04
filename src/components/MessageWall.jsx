@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Send, MessageSquareQuote } from 'lucide-react';
+import { Heart, Send } from 'lucide-react';
+import { saveMessageToFirestore, subscribeToMessages } from '../firebase';
 
 export function MessageWall() {
   const [messages, setMessages] = useState([
@@ -7,55 +8,73 @@ export function MessageWall() {
       id: 1,
       author: 'Família Alves',
       text: 'Que este amor seja abençoado e fortalecido a cada dia. Estamos imensamente felizes por vocês!',
-      date: 'Hoje'
+      date: 'Ontem'
     },
     {
       id: 2,
       author: 'Ana & Paulo',
-      text: 'Alberto e Lieza, vocês são o exemplo perfeito de amor e cumplicidade. Que Deus guie sempre os vossos passos!',
-      date: 'Ontem'
+      text: 'Alberto e Liesa, vocês são o exemplo perfeito de amor e cumplicidade. Que Deus guie sempre os vossos passos!',
+      date: 'Há 2 dias'
     },
     {
       id: 3,
       author: 'Pr. Mateus',
       text: 'O amor é o vínculo da perfeição. Desejamos uma união recheada de paz, alegria e sabedoria.',
-      date: 'Há 2 dias'
+      date: 'Há 3 dias'
     }
   ]);
 
   const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Load local messages if saved in localStorage
+  // Sincronização em tempo real das mensagens com o Firebase Firestore
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('alberto_lieza_messages');
-      if (saved) {
-        setMessages(JSON.parse(saved));
+    const unsubscribe = subscribeToMessages((cloudMessages) => {
+      if (cloudMessages && cloudMessages.length > 0) {
+        setMessages(cloudMessages);
+      } else {
+        try {
+          const saved = localStorage.getItem('alberto_liesa_messages');
+          if (saved) setMessages(JSON.parse(saved));
+        } catch (e) {
+          console.log('Using initial wall messages');
+        }
       }
-    } catch (e) {
-      console.log('Using initial wall messages');
-    }
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const handleAddMessage = (e) => {
+  const handleAddMessage = async (e) => {
     e.preventDefault();
     if (!author.trim() || !text.trim()) return;
 
+    setIsSubmitting(true);
+
     const newMsg = {
-      id: Date.now(),
       author: author.trim(),
       text: text.trim(),
-      date: 'Agora mesmo'
+      date: 'Agora mesmo',
+      timestamp: new Date().toISOString()
     };
 
+    // 1. Guardar no Firebase
+    try {
+      await saveMessageToFirestore(newMsg);
+    } catch (err) {
+      console.log('Firebase message sync error:', err);
+    }
+
+    // 2. Guardar backup local
     const updated = [newMsg, ...messages];
     setMessages(updated);
     setAuthor('');
     setText('');
+    setIsSubmitting(false);
 
     try {
-      localStorage.setItem('alberto_lieza_messages', JSON.stringify(updated));
+      localStorage.setItem('alberto_liesa_messages', JSON.stringify(updated));
     } catch (e) {
       console.log('Saved to state');
     }
@@ -74,7 +93,7 @@ export function MessageWall() {
           </h2>
           <div className="w-24 h-0.5 bg-[#D4AF37]/50 mx-auto mt-4 mb-4" />
           <p className="text-sm sm:text-base text-[#6B5A56] max-w-xl mx-auto">
-            Deixe o seu carinho, oração ou mensagem especial para Alberto & Lieza.
+            Deixe o seu carinho, oração ou mensagem especial para Alberto & Liesa.
           </p>
         </div>
 
@@ -95,10 +114,11 @@ export function MessageWall() {
               <div className="flex items-center justify-end">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-[#D4AF37] hover:bg-[#B8860B] text-white font-medium text-sm shadow-xs transition-colors flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-[#D4AF37] hover:bg-[#B8860B] text-white font-medium text-sm shadow-xs transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   <Send className="w-4 h-4" />
-                  Publicar Mensagem
+                  {isSubmitting ? 'A publicar...' : 'Publicar Mensagem'}
                 </button>
               </div>
             </div>
@@ -117,9 +137,9 @@ export function MessageWall() {
 
         {/* Message Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {messages.map((msg) => (
+          {messages.map((msg, idx) => (
             <div
-              key={msg.id}
+              key={msg.id || idx}
               className="glass-card rounded-2xl p-6 border border-[#E2C799]/30 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between"
             >
               <div>
@@ -134,7 +154,7 @@ export function MessageWall() {
                 </p>
               </div>
               <span className="text-[10px] text-[#8A7874] uppercase tracking-wider font-semibold">
-                {msg.date}
+                {msg.date || msg.createdDate || 'Recente'}
               </span>
             </div>
           ))}

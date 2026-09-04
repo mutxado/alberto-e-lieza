@@ -3,7 +3,6 @@ import {
   getFirestore, 
   collection, 
   addDoc, 
-  getDocs, 
   deleteDoc, 
   doc, 
   query, 
@@ -12,33 +11,23 @@ import {
   serverTimestamp 
 } from 'firebase/firestore';
 
-// Configuração do Firebase para Alberto & Liesa
-// Pode colar as credenciais oficiais do seu projeto Firebase Console aqui
+// Configuração oficial do Firebase para Alberto & Liesa
 export const firebaseConfig = {
-  apiKey: "AIzaSyDummyKeyReplaceWithYours",
+  apiKey: "AIzaSyBCUfbXDZss5-9vsHz-y7mh-PLfjq-bd2g",
   authDomain: "alberto-e-liesa.firebaseapp.com",
   projectId: "alberto-e-liesa",
   storageBucket: "alberto-e-liesa.firebasestorage.app",
-  messagingSenderId: "1234567890",
-  appId: "1:1234567890:web:abcdef123456"
+  messagingSenderId: "943796554139",
+  appId: "1:943796554139:web:2dc1ce59f701b20861f93e",
+  measurementId: "G-CCML3HQB9E"
 };
 
-// Inicialização segura do Firebase (com verificação de credenciais ativas)
-let db = null;
-let isFirebaseReady = false;
+// Inicialização do Firebase e Firestore
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const isFirebaseReady = true;
 
-try {
-  if (firebaseConfig.apiKey && !firebaseConfig.apiKey.includes("DummyKey")) {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    isFirebaseReady = true;
-    console.log("🔥 Firebase Firestore inicializado com sucesso!");
-  } else {
-    console.log("ℹ️ Firebase configurado em modo de transição (aguardando credenciais do console).");
-  }
-} catch (error) {
-  console.error("Erro ao inicializar Firebase:", error);
-}
+console.log("🔥 Firebase Firestore conectado com sucesso para Alberto & Liesa!");
 
 export { db, isFirebaseReady };
 
@@ -53,7 +42,7 @@ export async function saveRsvpToFirestore(rsvpData) {
     });
     return docRef.id;
   } catch (err) {
-    console.error("Erro ao guardar RSVP no Firebase:", err);
+    console.error("Erro ao guardar RSVP no Firebase Firestore:", err);
     throw err;
   }
 }
@@ -74,6 +63,7 @@ export function subscribeToRsvps(callback) {
     callback(rsvps);
   }, (err) => {
     console.error("Erro na sincronização do Firebase RSVP:", err);
+    callback([]);
   });
 }
 
@@ -120,5 +110,6 @@ export function subscribeToMessages(callback) {
     callback(messages);
   }, (err) => {
     console.error("Erro na sincronização de Mensagens do Firebase:", err);
+    callback([]);
   });
 }
