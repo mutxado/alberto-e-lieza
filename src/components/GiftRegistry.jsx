@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Gift, Utensils, Coffee, Flame, Heart, Copy, Check, Send, CreditCard } from 'lucide-react';
+import { Gift, Heart, Send, Copy, Check, CreditCard, Utensils, Coffee, Flame } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
 export function GiftRegistry() {
@@ -14,11 +14,16 @@ export function GiftRegistry() {
 
   const getIcon = (iconName) => {
     switch (iconName) {
-      case 'Utensils': return <Utensils className="w-6 h-6" />;
-      case 'Coffee': return <Coffee className="w-6 h-6" />;
-      case 'Flame': return <Flame className="w-6 h-6" />;
-      case 'Heart': return <Heart className="w-6 h-6" />;
-      default: return <Gift className="w-6 h-6" />;
+      case 'Utensils':
+        return <Utensils className="w-6 h-6" />;
+      case 'Coffee':
+        return <Coffee className="w-6 h-6" />;
+      case 'Flame':
+        return <Flame className="w-6 h-6" />;
+      case 'Heart':
+        return <Heart className="w-6 h-6" />;
+      default:
+        return <Gift className="w-6 h-6" />;
     }
   };
 
@@ -39,7 +44,7 @@ export function GiftRegistry() {
           </p>
         </div>
 
-        {/* Payment / Direct Contribution Box (M-Pesa & e-Mola) */}
+        {/* Direct Payment Box (M-Pesa & e-Mola) */}
         <div className="glass-card rounded-3xl p-6 sm:p-8 mb-12 sm:mb-16 border border-[#E2C799]/40 shadow-xs max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-[#E2C799]/30 flex items-center justify-center text-[#B8860B]">
@@ -57,8 +62,8 @@ export function GiftRegistry() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { label: 'M-Pesa', val: paymentInfo.mpesa, raw: '845942760', key: 'mpesa' },
-              { label: 'e-Mola', val: paymentInfo.emola, raw: '864232917', key: 'emola' },
+              { label: 'M-Pesa', val: paymentInfo.mpesa, raw: '845942765', key: 'mpesa' },
+              { label: 'e-Mola', val: paymentInfo.emola, raw: '866000210', key: 'emola' },
             ].map((method) => (
               <div key={method.key} className="bg-white rounded-2xl p-4 border border-[#E2C799]/30 flex items-center justify-between gap-3 shadow-2xs">
                 <div className="overflow-hidden">
@@ -87,38 +92,35 @@ export function GiftRegistry() {
           </div>
         </div>
 
-        {/* Gift Cards Grid */}
+        {/* Gift Items Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {items.map((gift) => {
-            const whatsappMsg = `Olá Alberto e Lieza! Gostaria de abençoar o vosso casamento com o presente: *${gift.title}*.`;
-            const waUrl = `https://wa.me/${weddingData.couple.whatsappPhone}?text=${encodeURIComponent(whatsappMsg)}`;
+          {items.map((item) => {
+            const message = `Olá Alberto e Liesa! Gostaria de abençoar o vosso casamento com o presente: *${item.title}*.`;
+            const waLink = `https://wa.me/${weddingData.couple.whatsappPhone}?text=${encodeURIComponent(message)}`;
 
             return (
               <div
-                key={gift.id}
+                key={item.id}
                 className="glass-card rounded-3xl p-6 border border-[#E2C799]/40 shadow-xs flex flex-col justify-between hover:shadow-md transition-all group"
               >
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#E2C799]/30 flex items-center justify-center text-[#B8860B] mb-4 group-hover:scale-110 transition-transform">
-                    {getIcon(gift.icon)}
+                    {getIcon(item.icon)}
                   </div>
-                  
                   <h3 className="font-serif text-xl text-[#2C2623] font-medium mb-2">
-                    {gift.title}
+                    {item.title}
                   </h3>
-                  
                   <p className="text-xs sm:text-sm text-[#5A4D4A] leading-relaxed mb-4">
-                    {gift.description}
+                    {item.description}
                   </p>
                 </div>
 
                 <div>
                   <div className="text-xs font-bold text-[#B8860B] mb-4">
-                    Sugestão: {gift.suggestedValue}
+                    Sugestão: {item.suggestedValue}
                   </div>
-
                   <a
-                    href={waUrl}
+                    href={waLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-[#D4AF37] hover:bg-[#B8860B] text-white text-xs sm:text-sm font-medium shadow-xs transition-colors"

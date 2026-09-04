@@ -140,7 +140,7 @@ export const weddingData = {
     intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Contudo, para quem desejar nos abençoar no início desta nova etapa, preparamos algumas sugestões carinhosas:",
     paymentInfo: {
       mpesa: "M-Pesa: 845942765 (Alberto Francisco Novela)",
-      emola: "e-Mola: 864232917 (Liesa Lopes)",
+      emola: "e-Mola: 866000210 (Liesa Lopes)",
       bankAccount: "Millennium BIM: AO06 0000 0000 0000 / NIB: 00010000000000"
     },
     items: [
