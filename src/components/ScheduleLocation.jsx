@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Clock, Navigation, Church, PartyPopper, FileText, Download } from 'lucide-react';
+import { MapPin, Clock, Navigation, Church, PartyPopper, Download } from 'lucide-react';
 import { weddingData } from '../data/weddingData';
 
 export function ScheduleLocation() {
@@ -80,7 +80,7 @@ export function ScheduleLocation() {
           <div className="w-full md:w-1/2 bg-white p-2 rounded-2xl border border-[#E2C799]/30 shadow-xs flex items-center justify-center overflow-hidden">
             <img
               src={weddingData.couple.flyerImage}
-              alt="Panfleto Oficial do Convite"
+              alt="Panfleto Oficial do Convite - 24 de Outubro"
               className="w-full h-auto max-h-[550px] object-contain rounded-xl"
             />
           </div>
@@ -98,7 +98,7 @@ export function ScheduleLocation() {
               <a
                 href={weddingData.couple.flyerImage}
                 target="_blank"
-                download="Convite_Alberto_e_Lieza.jpg"
+                download="Convite_Oficial_Alberto_e_Lieza_24_Outubro.jpg"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#2C2623] hover:bg-[#4A3E3D] text-white text-xs sm:text-sm font-medium shadow-md transition-all w-full sm:w-auto"
               >
                 <Download className="w-4 h-4 text-[#D4AF37]" />
