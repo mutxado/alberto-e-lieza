@@ -8,20 +8,20 @@ export const weddingData = {
       name: "Alberto",
       fullName: "Alberto Francisco Novela",
       role: "O Noivo",
-      bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Liesa a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
+      bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Lieza a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
       quote: "Amar é encontrar na felicidade do outro a sua própria paz.",
       image: `${base}images/groom_portrait.jpg`
     },
     bride: {
-      name: "Liesa",
-      fullName: "Liesa Lopes",
+      name: "Lieza",
+      fullName: "Lieza Lopes",
       role: "A Noiva",
-      bio: "Com a sua serenidade, elegância e luz própria. A Liesa traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
+      bio: "Com a sua serenidade, elegância e luz própria. A Lieza traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
       quote: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.",
       image: `${base}images/bride_portrait.jpg`
     },
     heroBg: `${base}images/photo8.jpg`,
-    hashtag: "#AlbertoELiesa2026",
+    hashtag: "#AlbertoELieza2026",
     tagline: "CASAMENTO EM MAPUTO, MOÇAMBIQUE",
     dateText: "Sábado, 24 de Outubro de 2026",
     targetDate: "2026-10-24T09:00:00",
@@ -53,7 +53,7 @@ export const weddingData = {
   events: [
     {
       id: "ceremony",
-      title: "Cerimónia Civil & Religiosa",
+      title: "Registo & Cerimónia Cristã",
       time: "09:00 H",
       place: "Igreja Embaixada de Cristo - Sede",
       address: "Avenida de Angola, Nº 1818 (ao lado da Cetraco), Maputo",
@@ -64,7 +64,7 @@ export const weddingData = {
     {
       id: "reception",
       title: "Copo de Água & Festa",
-      time: "15:00 H",
+      time: "14:00 H",
       place: "Salão de Eventos Ísis & Festas",
       address: "Rotunda de Chiango (Atrás da Igreja Divina Esperança), Maputo",
       details: "Um convívio inesquecível com almoço/jantar, música, celebração e alegria.",
@@ -76,7 +76,7 @@ export const weddingData = {
   gallery: [
     {
       id: 1,
-      title: "Alberto Francisco Novela & Liesa Lopes",
+      title: "Alberto Francisco Novela & Lieza Lopes",
       url: `${base}images/photo8.jpg`
     },
     {
@@ -101,18 +101,8 @@ export const weddingData = {
     },
     {
       id: 6,
-      title: "Liesa Lopes",
+      title: "Lieza Lopes",
       url: `${base}images/bride_portrait.jpg`
-    },
-    {
-      id: 7,
-      title: "Momentos Especiais",
-      url: `${base}images/photo1.png`
-    },
-    {
-      id: 8,
-      title: "Cúmplices no Amor",
-      url: `${base}images/photo2.png`
     }
   ],
 
@@ -120,7 +110,7 @@ export const weddingData = {
     intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Para quem desejar nos abençoar nesta nova etapa e contribuir para a nossa Lua de Mel e novo lar, disponibilizamos as opções abaixo:",
     paymentInfo: {
       mpesa: "M-Pesa: 845942765 (Alberto Francisco Novela)",
-      emola: "e-Mola: 879035122 (Liesa Lopes)",
+      emola: "e-Mola: 879035122 (Lieza Lopes)",
       bankAccount: "Millennium BIM: AO06 0000 0000 0000 / NIB: 00010000000000"
     },
     honeymoonOptions: [
