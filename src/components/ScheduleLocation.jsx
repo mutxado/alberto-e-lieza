@@ -16,25 +16,25 @@ export function ScheduleLocation() {
           </h2>
           <div className="w-24 h-0.5 bg-[#D4AF37]/50 mx-auto mt-4 mb-4" />
           <p className="text-sm sm:text-base text-[#6B5A56] max-w-xl mx-auto">
-            Sábado, <span className="font-bold text-[#B8860B]">17 de Outubro de 2026</span>. Acompanhe os horários e locais onde celebraremos o nosso grande dia.
+            Sábado, <span className="font-bold text-[#B8860B]">24 de Outubro de 2026</span>. Acompanhe os horários e locais onde celebraremos o nosso grande dia.
           </p>
         </div>
 
         {/* Events Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12 sm:mb-16 max-w-4xl mx-auto">
           {weddingData.events.map((evt, idx) => {
             return (
               <div
                 key={evt.id}
-                className="glass-card rounded-3xl p-6 border border-[#E2C799]/40 shadow-xs flex flex-col justify-between hover:shadow-md transition-all group"
+                className="glass-card rounded-3xl p-6 sm:p-8 border border-[#E2C799]/40 shadow-xs flex flex-col justify-between hover:shadow-md transition-all group"
               >
                 <div>
                   {/* Icon & Time Badge */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="w-12 h-12 rounded-2xl bg-[#E2C799]/30 flex items-center justify-center text-[#B8860B] group-hover:scale-110 transition-transform">
-                      {idx === 0 ? <Church className="w-6 h-6" /> : idx === 1 ? <FileText className="w-6 h-6" /> : <PartyPopper className="w-6 h-6" />}
+                      {idx === 0 ? <Church className="w-6 h-6" /> : <PartyPopper className="w-6 h-6" />}
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF7F2] border border-[#D4AF37]/40 text-[#8B6508] font-semibold text-xs">
+                    <div className="flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FAF7F2] border border-[#D4AF37]/40 text-[#8B6508] font-semibold text-xs">
                       <Clock className="w-3.5 h-3.5 text-[#B8860B]" />
                       <span>{evt.time}</span>
                     </div>
@@ -49,7 +49,7 @@ export function ScheduleLocation() {
                     {evt.place}
                   </h4>
 
-                  <p className="text-xs text-[#8A7874] mb-3">
+                  <p className="text-xs text-[#8A7874] mb-3 font-medium">
                     {evt.address}
                   </p>
 
@@ -67,7 +67,7 @@ export function ScheduleLocation() {
                     className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-[#D4AF37] hover:bg-[#B8860B] text-white font-medium text-xs shadow-xs transition-colors"
                   >
                     <Navigation className="w-3.5 h-3.5" />
-                    Google Maps
+                    Ver no Google Maps
                   </a>
                 </div>
               </div>

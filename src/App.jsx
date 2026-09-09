@@ -6,7 +6,6 @@ import { Story } from './components/Story';
 import { Couple } from './components/Couple';
 import { ScheduleLocation } from './components/ScheduleLocation';
 import { Gallery } from './components/Gallery';
-import { DressCode } from './components/DressCode';
 import { GiftRegistry } from './components/GiftRegistry';
 import { RsvpForm } from './components/RsvpForm';
 import { MessageWall } from './components/MessageWall';
@@ -132,7 +131,6 @@ export default function App() {
         <Couple />
         <ScheduleLocation />
         <Gallery />
-        <DressCode />
         <GiftRegistry />
         <RsvpForm />
         <MessageWall />

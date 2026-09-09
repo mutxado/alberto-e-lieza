@@ -56,10 +56,10 @@ export const weddingData = {
       title: "Cerimónia Civil & Religiosa",
       time: "09:00 H",
       place: "Igreja Embaixada de Cristo - Sede",
-      address: "Cidade de Maputo, Moçambique",
+      address: "Avenida de Angola, Nº 1818 (ao lado da Cetraco), Maputo",
       details: "A celebração do nosso matrimónio civil e bênção religiosa diante de Deus e da comunidade.",
-      mapUrl: "https://maps.google.com/?q=Igreja+Embaixada+de+Cristo+Maputo",
-      appleMapUrl: "https://maps.apple.com/?q=Embaixada+de+Cristo+Maputo"
+      mapUrl: "https://maps.google.com/?q=Avenida+de+Angola+1818+Maputo",
+      appleMapUrl: "https://maps.apple.com/?q=Avenida+de+Angola+1818+Maputo"
     },
     {
       id: "reception",
@@ -116,73 +116,39 @@ export const weddingData = {
     }
   ],
 
-  dressCode: {
-    title: "Traje & Recomendações",
-    code: "Passeio Completo / Fato Escuro & Vestido Elegante",
-    description: "Sugerimos tons elegantes de celebração (Traje Formal). Pedimos gentilmente aos convidados que evitem tons brancos ou marfim, reservados exclusivamente à noiva.",
-    faq: [
-      {
-        q: "Qual é o número de acompanhantes?",
-        a: "O convite é pessoal e intransmissível. Por favor, confirme o número exato de lugares reservados no seu convite."
-      },
-      {
-        q: "Haverá estacionamento seguro?",
-        a: "Sim, os locais dispõem de estacionamento privado e equipa de segurança no local."
-      },
-      {
-        q: "Até quando posso confirmar a presença?",
-        a: "Agradecemos que confirme a sua presença até ao dia 20 de Setembro de 2026."
-      }
-    ]
-  },
-
   gifts: {
-    intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Contudo, para quem desejar nos abençoar no início desta nova etapa, preparamos algumas sugestões carinhosas:",
+    intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Para quem desejar nos abençoar nesta nova etapa e contribuir para a nossa Lua de Mel e novo lar, disponibilizamos as opções abaixo:",
     paymentInfo: {
       mpesa: "M-Pesa: 845942765 (Alberto Francisco Novela)",
-      emola: "e-Mola: 866000210 (Liesa Lopes)",
+      emola: "e-Mola: 879035122 (Liesa Lopes)",
       bankAccount: "Millennium BIM: AO06 0000 0000 0000 / NIB: 00010000000000"
     },
-    items: [
+    honeymoonOptions: [
       {
         id: 1,
-        title: "Conjunto de Panelas & Cozinha",
-        description: "Essencial para a nossa cozinha e para prepararmos os nossos pratos favoritos juntos.",
-        icon: "Utensils",
-        suggestedValue: "3.500 MT"
-      },
-      {
-        id: 2,
-        title: "Liquidificador & Batedeira",
-        description: "Para os nossos sumos naturais, batidos saudáveis e pequenos-almoços cheios de energia.",
-        icon: "Coffee",
+        title: "Passeio Romântico de Lua de Mel",
+        description: "Contribua com um passeio especial e momentos inesquecíveis durante a nossa viagem de Lua de Mel.",
+        icon: "Palmtree",
         suggestedValue: "2.500 MT"
       },
       {
-        id: 3,
-        title: "Máquina de Café Espresso",
-        description: "Para os nossos despertares alegres e momentos de conversa ao fim de tarde.",
-        icon: "Coffee",
-        suggestedValue: "5.000 MT"
-      },
-      {
-        id: 4,
-        title: "Forninho Elétrico & Torradeira",
-        description: "Para jantares práticos e pequenos-almoços estaladiços no nosso lar.",
-        icon: "Flame",
+        id: 2,
+        title: "Jantar Especial à Beira-Mar",
+        description: "Um jantar romântico para celebrarmos os nossos primeiros dias de casados.",
+        icon: "Utensils",
         suggestedValue: "4.000 MT"
       },
       {
-        id: 5,
-        title: "Jogo de Cama Premium & Acessórios",
-        description: "Para garantir noites de descanso aconchegantes na nossa casa nova.",
+        id: 3,
+        title: "Estadia & Acomodação Lua de Mel",
+        description: "Ajude-nos a tornar os dias de descanso ainda mais confortáveis e memoráveis.",
         icon: "Heart",
-        suggestedValue: "4.500 MT"
+        suggestedValue: "6.000 MT"
       },
       {
-        id: 6,
-        title: "Abençoar com Qualquer Valor (Fundo Lua de Mel)",
-        description: "Se preferir nos abençoar com qualquer valor para a nossa viagem de Lua de Mel e novo lar.",
+        id: 4,
+        title: "Abençoar com Qualquer Valor (Livre Escolha)",
+        description: "Qualquer valor com que o seu coração desejar nos abençoar para o nosso novo lar e futuro.",
         icon: "Gift",
         suggestedValue: "Livre Escolha"
       }
