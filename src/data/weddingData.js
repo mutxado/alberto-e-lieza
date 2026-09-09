@@ -4,28 +4,30 @@ export const weddingData = {
   googleSheetsUrl: "https://script.google.com/macros/s/AKfycbzyPytuyyEYI6Or7QEzTh6VckaoXR80TRgRo5MbFDKhb6mExRYnOlljSsZr3z3haXnr/exec",
 
   couple: {
-    name: "Alberto",
-    fullName: "Alberto Francisco Novela",
-    role: "O Noivo",
-    bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Lieza a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
-    quote: "Amar é encontrar na felicidade do outro a sua própria paz.",
-    image: `${base}images/groom_portrait.jpg`
+    groom: {
+      name: "Alberto",
+      fullName: "Alberto Francisco Novela",
+      role: "O Noivo",
+      bio: "Com um coração generoso, espírito focado e um sorriso contagiante. O Alberto encontrou na Lieza a sua companheira ideal para a vida e a resposta às suas orações mais sinceras.",
+      quote: "Amar é encontrar na felicidade do outro a sua própria paz.",
+      image: `${base}images/groom_portrait.jpg`
+    },
+    bride: {
+      name: "Lieza",
+      fullName: "Lieza Lopes",
+      role: "A Noiva",
+      bio: "Com a sua serenidade, elegância e luz própria. A Lieza traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
+      quote: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.",
+      image: `${base}images/bride_portrait.jpg`
+    },
+    heroBg: `${base}images/photo8.jpg`,
+    hashtag: "#AlbertoELieza2026",
+    tagline: "CASAMENTO EM MAPUTO, MOÇAMBIQUE",
+    dateText: "Sábado, 24 de Outubro de 2026",
+    targetDate: "2026-10-24T09:00:00",
+    whatsappPhone: "258845942765",
+    flyerImage: `${base}images/flyer_official.jpg?v=20261024`
   },
-  bride: {
-    name: "Lieza",
-    fullName: "Lieza Lopes",
-    role: "A Noiva",
-    bio: "Com a sua serenidade, elegância e luz própria. A Lieza traz alegria e ternura a todos os dias, vendo no Alberto o seu porto seguro e o seu grande amor.",
-    quote: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.",
-    image: `${base}images/bride_portrait.jpg`
-  },
-  heroBg: `${base}images/photo8.jpg`,
-  hashtag: "#AlbertoELieza2026",
-  tagline: "CASAMENTO EM MAPUTO, MOÇAMBIQUE",
-  dateText: "Sábado, 24 de Outubro de 2026",
-  targetDate: "2026-10-24T09:00:00",
-  whatsappPhone: "258845942765",
-  flyerImage: `${base}images/flyer_official.jpg?v=20261024`,
 
   story: [
     {
