@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Menu, X, Heart } from 'lucide-react';
-import { weddingData } from '../data/weddingData';
+import { Menu, X, Heart } from 'lucide-react';
 
-export function Navbar({ isPlaying, togglePlay }) {
+export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -34,7 +33,7 @@ export function Navbar({ isPlaying, togglePlay }) {
         {/* Logo */}
         <a href="#hero" className="flex items-center gap-2 group">
           <span className="font-script text-3xl sm:text-4xl text-[#B8860B] group-hover:text-[#AA7C11] transition-colors">
-            Alberto & Liesa
+            Alberto & Lieza
           </span>
           <Heart className="w-4 h-4 text-[#D4AF37] fill-[#D4AF37] animate-pulse hidden sm:inline-block" />
         </a>
@@ -52,27 +51,8 @@ export function Navbar({ isPlaying, togglePlay }) {
           ))}
         </nav>
 
-        {/* Action Controls (Audio & Mobile Menu Button) */}
+        {/* Action Controls (Mobile Menu Button) */}
         <div className="flex items-center gap-3">
-          {/* Audio Toggle Button */}
-          <button
-            onClick={togglePlay}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E2C799]/20 hover:bg-[#E2C799]/40 border border-[#D4AF37]/40 text-[#4A3E3D] text-xs sm:text-sm font-medium transition-all shadow-xs"
-            title={isPlaying ? "Pausar Música" : "Tocar Música"}
-          >
-            {isPlaying ? (
-              <>
-                <Volume2 className="w-4 h-4 text-[#B8860B] animate-pulse" />
-                <span className="hidden sm:inline text-xs">Música a tocar</span>
-              </>
-            ) : (
-              <>
-                <VolumeX className="w-4 h-4 text-gray-500" />
-                <span className="hidden sm:inline text-xs">Música em pausa</span>
-              </>
-            )}
-          </button>
-
           {/* Mobile Hamburger Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
