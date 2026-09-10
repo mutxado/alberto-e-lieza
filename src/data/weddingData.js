@@ -107,42 +107,12 @@ export const weddingData = {
   ],
 
   gifts: {
-    intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Para quem desejar nos abençoar nesta nova etapa e contribuir para a nossa Lua de Mel e novo lar, disponibilizamos as opções abaixo:",
+    intro: "A vossa presença no nosso casamento é o maior presente que poderíamos desejar. Para quem desejar nos abençoar nesta nova etapa, disponibilizamos as opções de contribuição abaixo:",
     paymentInfo: {
       mpesa: "M-Pesa: 845942765 (Alberto Francisco Novela)",
       emola: "e-Mola: 879035122 (Lieza Lopes)",
       bankAccount: "Millennium BIM: AO06 0000 0000 0000 / NIB: 00010000000000"
-    },
-    honeymoonOptions: [
-      {
-        id: 1,
-        title: "Passeio Romântico de Lua de Mel",
-        description: "Contribua com um passeio especial e momentos inesquecíveis durante a nossa viagem de Lua de Mel.",
-        icon: "Palmtree",
-        suggestedValue: "2.500 MT"
-      },
-      {
-        id: 2,
-        title: "Jantar Especial à Beira-Mar",
-        description: "Um jantar romântico para celebrarmos os nossos primeiros dias de casados.",
-        icon: "Utensils",
-        suggestedValue: "4.000 MT"
-      },
-      {
-        id: 3,
-        title: "Estadia & Acomodação Lua de Mel",
-        description: "Ajude-nos a tornar os dias de descanso ainda mais confortáveis e memoráveis.",
-        icon: "Heart",
-        suggestedValue: "6.000 MT"
-      },
-      {
-        id: 4,
-        title: "Abençoar com Qualquer Valor (Livre Escolha)",
-        description: "Qualquer valor com que o seu coração desejar nos abençoar para o nosso novo lar e futuro.",
-        icon: "Gift",
-        suggestedValue: "Livre Escolha"
-      }
-    ]
+    }
   },
 
   musicPlaylist: [
