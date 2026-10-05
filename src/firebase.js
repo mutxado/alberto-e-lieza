@@ -5,6 +5,7 @@ import {
   addDoc, 
   deleteDoc, 
   doc, 
+  setDoc,
   query, 
   orderBy, 
   onSnapshot, 
@@ -137,4 +138,98 @@ export function subscribeToMessages(callback) {
     callback([]);
     return () => {};
   }
+}
+
+// =========================================================================
+// 6. GESTÃO DE MESAS E ALOCAÇÕES (settings)
+// =========================================================================
+
+export async function syncTablesToFirestore(tablesArray) {
+  if (!db) return;
+  try {
+    await setDoc(doc(db, 'settings', 'tables_data'), {
+      tables: tablesArray,
+      updatedAt: serverTimestamp()
+    });
+  } catch (err) {
+    console.error("❌ Erro ao sincronizar mesas no Firebase:", err);
+  }
+}
+
+export function subscribeToTables(callback) {
+  if (!db) {
+    callback(null);
+    return () => {};
+  }
+
+  return onSnapshot(doc(db, 'settings', 'tables_data'), (docSnap) => {
+    if (docSnap.exists()) {
+      callback(docSnap.data().tables || []);
+    } else {
+      callback(null);
+    }
+  }, (err) => {
+    console.error("❌ Erro ao ouvir mesas no Firebase:", err);
+    callback(null);
+  });
+}
+
+export async function syncSeatingAssignmentsToFirestore(assignmentsObj) {
+  if (!db) return;
+  try {
+    await setDoc(doc(db, 'settings', 'seating_assignments'), {
+      assignments: assignmentsObj,
+      updatedAt: serverTimestamp()
+    });
+  } catch (err) {
+    console.error("❌ Erro ao sincronizar alocações no Firebase:", err);
+  }
+}
+
+export function subscribeToSeatingAssignments(callback) {
+  if (!db) {
+    callback(null);
+    return () => {};
+  }
+
+  return onSnapshot(doc(db, 'settings', 'seating_assignments'), (docSnap) => {
+    if (docSnap.exists()) {
+      callback(docSnap.data().assignments || {});
+    } else {
+      callback(null);
+    }
+  }, (err) => {
+    console.error("❌ Erro ao ouvir alocações no Firebase:", err);
+    callback(null);
+  });
+}
+
+export async function syncManualGuestsToFirestore(manualGuestsArray) {
+  if (!db) return;
+  try {
+    await setDoc(doc(db, 'settings', 'manual_guests'), {
+      guests: manualGuestsArray,
+      updatedAt: serverTimestamp()
+    });
+  } catch (err) {
+    console.error("❌ Erro ao sincronizar convidados manuais no Firebase:", err);
+  }
+}
+
+export function subscribeToManualGuests(callback) {
+  if (!db) {
+    callback(null);
+    return () => {};
+  }
+
+  return onSnapshot(doc(db, 'settings', 'manual_guests'), (docSnap) => {
+    if (docSnap.exists()) {
+      callback(docSnap.data().guests || []);
+    } else {
+      callback(null);
+    }
+  }, (err) => {
+    console.error("❌ Erro ao ouvir convidados manuais no Firebase:", err);
+    callback(null);
+  });
 }
